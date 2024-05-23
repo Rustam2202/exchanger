@@ -2,38 +2,31 @@ package main
 
 import "fmt"
 
-/*
-	Given a total and coins of certain denominations find number of ways total
-	can be formed from coins assuming infinity supply of coins
-
-	http://www.geeksforgeeks.org/dynamic-programming-set-7-coin-change/
-*/
-
-
-
-func PrintCoinChangingSolution(total int, coins []int) {
-	result := make([]int, 0)
-	printActualSolution(&result, total, coins, 0)
+func findCombinations(amount int, banknotes []int) [][]int {
+	var result [][]int
+	var combination []int
+	findCombinationsRecursive(amount, banknotes, 0, combination, &result)
+	return result
 }
 
-func printActualSolution(result *[]int, total int, coins []int, pos int) {
-	if total == 0 {
-		for _, r := range *result {
-			fmt.Printf("%d ", r)
-		}
-		fmt.Println()
+func findCombinationsRecursive(amount int, banknotes []int, start int, combination []int, result *[][]int) {
+	if amount == 0 {
+		comboCopy := make([]int, len(combination))
+		copy(comboCopy, combination)
+		*result = append(*result, comboCopy)
+		return
 	}
-	for i := pos; i < len(coins); i++ {
-		if total >= coins[i] {
-			*result = append(*result, coins[i])
-			printActualSolution(result, total-coins[i], coins, i)
-			*result = (*result)[:len(*result)-1]
+
+	for i := start; i < len(banknotes); i++ {
+		if banknotes[i] <= amount {
+			combination = append(combination, banknotes[i])
+			findCombinationsRecursive(amount-banknotes[i], banknotes, i, combination, result)
+			combination = combination[:len(combination)-1]
 		}
 	}
 }
 
 func main() {
-	total := 15
-	coins := []int{1, 2, 5, 10}
-	PrintCoinChangingSolution(total, coins)
+	result := findCombinations(400, []int{5000, 2000, 1000, 500, 200, 100, 50})
+	fmt.Printf("result: %v\n", result)
 }
