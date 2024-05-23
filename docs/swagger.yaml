@@ -15,11 +15,19 @@ definitions:
           type: integer
         type: array
     type: object
+  handlers.ExchangeResponse:
+    properties:
+      exchanges:
+        items:
+          items:
+            type: integer
+          type: array
+        type: array
+    type: object
 info:
   contact: {}
   description: Exchanger app server.
   title: Exchanger API
-  version: "1.0"
 paths:
   /exchange:
     post:
@@ -38,7 +46,7 @@ paths:
         "200":
           description: OK
           schema:
-            type: request
+            $ref: '#/definitions/handlers.ExchangeResponse'
         "400":
           description: Bad Request
           schema:

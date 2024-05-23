@@ -30,7 +30,6 @@ func NewServer(cfg ServerHTTPConfig) *Server {
 }
 
 // @title			Exchanger API
-// @version		1.0
 // @description	Exchanger app server.
 // @BasePath		/
 func (s *Server) Start(ctx context.Context, wg *sync.WaitGroup) { //

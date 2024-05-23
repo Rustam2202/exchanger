@@ -3,8 +3,7 @@
     "info": {
         "description": "Exchanger app server.",
         "title": "Exchanger API",
-        "contact": {},
-        "version": "1.0"
+        "contact": {}
     },
     "basePath": "/",
     "paths": {
@@ -35,7 +34,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "request"
+                            "$ref": "#/definitions/handlers.ExchangeResponse"
                         }
                     },
                     "400": {
@@ -74,6 +73,20 @@
                     "type": "array",
                     "items": {
                         "type": "integer"
+                    }
+                }
+            }
+        },
+        "handlers.ExchangeResponse": {
+            "type": "object",
+            "properties": {
+                "exchanges": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
                     }
                 }
             }

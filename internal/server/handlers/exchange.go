@@ -22,7 +22,7 @@ type ExchangeResponse struct {
 //	@Accept		json
 //	@Produce	json
 //	@Param		request	body		ExchangeRequest	true	"Exchange Request"
-//	@Success	200		request		body			ExchangeResponse
+//	@Success	200		{object}	ExchangeResponse
 //	@Failure	400		{object}	handlers.ErrorResponce
 //	@Failure	500		{object}	handlers.ErrorResponce
 //	@Router		/exchange [post]

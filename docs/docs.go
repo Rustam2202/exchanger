@@ -42,7 +42,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "request"
+                            "$ref": "#/definitions/handlers.ExchangeResponse"
                         }
                     },
                     "400": {
@@ -84,13 +84,27 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "handlers.ExchangeResponse": {
+            "type": "object",
+            "properties": {
+                "exchanges": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
         }
     }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "1.0",
+	Version:          "",
 	Host:             "",
 	BasePath:         "/",
 	Schemes:          []string{},
@@ -98,8 +112,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "Exchanger app server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	// LeftDelim:        "{{",
-	// RightDelim:       "}}",
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {
