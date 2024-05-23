@@ -1,8 +1,6 @@
-package main
+package service
 
-import "fmt"
-
-func findCombinations(amount int, banknotes []int) [][]int {
+func FindCombinations(amount int, banknotes []int) [][]int {
 	var result [][]int
 	var combination []int
 	findCombinationsRecursive(amount, banknotes, 0, combination, &result)
@@ -26,7 +24,7 @@ func findCombinationsRecursive(amount int, banknotes []int, start int, combinati
 	}
 }
 
-func main() {
-	result := findCombinations(400, []int{5000, 2000, 1000, 500, 200, 100, 50})
-	fmt.Printf("result: %v\n", result)
-}
+// func main() {
+// 	result := FindCombinations(400, []int{5000, 2000, 1000, 500, 200, 100, 50})
+// 	fmt.Printf("result: %v\n", result)
+// }

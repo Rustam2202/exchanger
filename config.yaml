@@ -1,0 +1,19 @@
+ServerHTTPConfig:
+  host: 
+  port: 8080
+
+LoggerConfig:
+  encoding: json
+  level: info
+  outputPaths:
+    - stdout
+  errorOutputPaths:
+    - stderr
+  encoderConfig:
+    messageKey: message
+    levelKey: level
+    timeKey: time
+    timeEncoder: ISO8601
+    levelEncoder: capital
+    durationEncoder: string
+    callerEncoder: short
