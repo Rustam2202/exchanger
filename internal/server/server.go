@@ -32,8 +32,9 @@ func NewServer(cfg ServerHTTPConfig) *Server {
 // @title			Exchanger API
 // @description	Exchanger app server.
 // @BasePath		/
-func (s *Server) Start(ctx context.Context, wg *sync.WaitGroup) { //
-	//defer wg.Done()
+func (s *Server) Start(ctx context.Context) {
+	wg := &sync.WaitGroup{}
+
 	router := gin.Default()
 	docs.SwaggerInfo.BasePath = "/"
 	docs.SwaggerInfo.Host = fmt.Sprintf("%s:%d", s.cfg.Host, s.cfg.Port)
@@ -44,13 +45,14 @@ func (s *Server) Start(ctx context.Context, wg *sync.WaitGroup) { //
 
 	router.POST("/exchange", handlers.ExchangePost)
 
-	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.GET("/docs/index.html", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	s.HttpServer = &http.Server{
 		Addr:    fmt.Sprintf("%s:%d", s.cfg.Host, s.cfg.Port),
 		Handler: router,
 	}
 
+	wg.Add(1)
 	go func() {
 		defer wg.Done()
 		err := s.HttpServer.ListenAndServe()
@@ -59,11 +61,11 @@ func (s *Server) Start(ctx context.Context, wg *sync.WaitGroup) { //
 		}
 	}()
 	<-ctx.Done()
-
 	shutdownCtx, cancel := context.WithTimeout(ctx, 1*time.Second)
-	defer cancel()
-	logger.Logger.Info("Shutting down HTTP server ...")
+	cancel()
 	if err := s.HttpServer.Shutdown(shutdownCtx); err != nil {
 		logger.Logger.Error("Failed to shutdown HTTP server", zap.Error(err))
 	}
+	logger.Logger.Info("Shutting down HTTP server ...")
+	wg.Wait()
 }
