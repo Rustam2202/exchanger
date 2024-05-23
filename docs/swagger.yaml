@@ -1,0 +1,53 @@
+basePath: /
+definitions:
+  handlers.ErrorResponce:
+    properties:
+      error: {}
+      message:
+        type: string
+    type: object
+  handlers.ExchangeRequest:
+    properties:
+      amount:
+        type: integer
+      banknotes:
+        items:
+          type: integer
+        type: array
+    type: object
+info:
+  contact: {}
+  description: Exchanger app server.
+  title: Exchanger API
+  version: "1.0"
+paths:
+  /exchange:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Exchange Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.ExchangeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: request
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponce'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponce'
+      summary: Calculate event data by Id
+      tags:
+      - Calculate
+swagger: "2.0"

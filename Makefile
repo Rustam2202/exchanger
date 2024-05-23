@@ -1,9 +1,9 @@
 build:
-	go build -o bin/party-calc ./cmd/main.go
+	go build -o bin/party-calc ./cmd/exchanges/main.go
 run:
-	go run ./cmd/main.go -confpath=./cmd
+	go run ./cmd/exchanges/main.go -confpath=./
 exe:
-	./bin/party-calc
+	./bin/exchanger
 	
 docker-build:
 	docker build --tag party-calc .
@@ -18,5 +18,5 @@ test-cover-report:
 
 swag:
 	swag fmt
-	swag init -g ./internal/server/http/server.go
+	swag init -g ./internal/server/server.go
 	npx @redocly/cli build-docs ./docs/swagger.json -o ./docs/index.html

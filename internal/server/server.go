@@ -10,9 +10,9 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/docs"
 	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/logger"
 	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/server/handlers"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/docs"
 	"go.uber.org/zap"
 )
 
@@ -43,10 +43,9 @@ func (s *Server) Start(ctx context.Context, wg *sync.WaitGroup) { //
 		ctx.String(http.StatusOK, "Hello world from Exchanger HTTP server")
 	})
 
-	router.GET("/exchange", handlers.ExchangeGet)
+	router.POST("/exchange", handlers.ExchangePost)
 
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
 
 	s.HttpServer = &http.Server{
 		Addr:    fmt.Sprintf("%s:%d", s.cfg.Host, s.cfg.Port),

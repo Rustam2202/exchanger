@@ -9,7 +9,8 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/algorithm.go"
+            "program": "${workspaceFolder}/cmd/exchanges/main.go",
+            "args": ["-confpath=${workspaceFolder}"],
         }
     ]
 }
