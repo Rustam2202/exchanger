@@ -45,6 +45,7 @@ func (s *Server) Start(ctx context.Context) {
 
 	router.POST("/exchange", handlers.ExchangePost)
 
+	// swagger API documentation
 	router.GET("/docs/index.html", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	s.HttpServer = &http.Server{
@@ -52,6 +53,7 @@ func (s *Server) Start(ctx context.Context) {
 		Handler: router,
 	}
 
+	// graceful shutdown
 	wg.Add(1)
 	go func() {
 		defer wg.Done()

@@ -12,9 +12,11 @@ import (
 )
 
 func main() {
+	// Interrupt context
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
+	// config from confog.yaml
 	cfg := config.LoadConfig()
 	logger.IntializeLogger(cfg.LoggerConfig)
 

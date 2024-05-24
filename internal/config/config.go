@@ -10,8 +10,8 @@ import (
 )
 
 type Config struct {
-	ServerHTTPConfig      server.ServerHTTPConfig
-	LoggerConfig          logger.LoggerConfig
+	ServerHTTPConfig server.ServerHTTPConfig
+	LoggerConfig     logger.LoggerConfig
 }
 
 func LoadConfig() *Config {
@@ -26,12 +26,10 @@ func LoadConfig() *Config {
 
 	err := viper.ReadInConfig()
 	if err != nil {
-		// logger.Logger.Fatal("Failed to read configs: ", zap.Error(err))
 		log.Fatal(err)
 	}
 	err = viper.Unmarshal(&cfg)
 	if err != nil {
-		//	logger.Logger.Fatal("Failed to unmarshal configs: ", zap.Error(err))
 		log.Fatal(err)
 	}
 	return &cfg

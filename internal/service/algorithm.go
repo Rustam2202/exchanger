@@ -1,10 +1,29 @@
 package service
 
-func FindCombinations(amount int, banknotes []int) [][]int {
+import (
+	"errors"
+	"slices"
+)
+
+func FindCombinations(amount int, banknotes []int) ([][]int, error) {
+	if amount <= 0 {
+		return nil, errors.New("amount should be great as zero")
+	}
+	if len(banknotes) == 0 {
+		return nil, errors.New("banknotes must not be empty")
+	}
+	if amount < slices.Min(banknotes) {
+		return nil, errors.New("amount is less minimum banknote")
+	}
+	banknotes=slices.Compact(banknotes)
+
 	var result [][]int
 	var combination []int
 	findCombinationsRecursive(amount, banknotes, 0, combination, &result)
-	return result
+	if result == nil {
+		return nil, errors.New("couldn`t found exchange variants")
+	}
+	return result, nil
 }
 
 func findCombinationsRecursive(amount int, banknotes []int, start int, combination []int, result *[][]int) {
@@ -23,8 +42,3 @@ func findCombinationsRecursive(amount int, banknotes []int, start int, combinati
 		}
 	}
 }
-
-// func main() {
-// 	result := FindCombinations(400, []int{5000, 2000, 1000, 500, 200, 100, 50})
-// 	fmt.Printf("result: %v\n", result)
-// }

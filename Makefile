@@ -12,7 +12,7 @@ docker-run:
 
 test:
 	go test ./... -cover -coverprofile=coverage.out
-test-cover-report:
+test-cover:
 	make test
 	go tool cover -html=coverage.out
 
