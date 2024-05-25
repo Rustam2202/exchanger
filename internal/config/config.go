@@ -4,9 +4,9 @@ import (
 	"flag"
 	"log"
 
+	"github.com/Rustam2202/exchanger/internal/logger"
+	"github.com/Rustam2202/exchanger/internal/server"
 	"github.com/spf13/viper"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/logger"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/server"
 )
 
 type Config struct {

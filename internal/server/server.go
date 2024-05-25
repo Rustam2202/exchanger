@@ -7,12 +7,12 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Rustam2202/exchanger/docs"
+	"github.com/Rustam2202/exchanger/internal/logger"
+	"github.com/Rustam2202/exchanger/internal/server/handlers"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/docs"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/logger"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/server/handlers"
 	"go.uber.org/zap"
 )
 

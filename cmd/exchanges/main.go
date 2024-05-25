@@ -6,9 +6,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/config"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/logger"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/server"
+	"github.com/Rustam2202/exchanger/internal/config"
+	"github.com/Rustam2202/exchanger/internal/logger"
+	"github.com/Rustam2202/exchanger/internal/server"
 )
 
 func main() {

@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/Rustam2202/exchanger/internal/service"
 	"github.com/gin-gonic/gin"
-	"gitlab.com/llcmediatel/recruiting/golang-junior-dev/internal/service"
 )
 
 type ExchangeRequest struct {

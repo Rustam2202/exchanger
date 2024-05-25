@@ -1,106 +1,28 @@
-# golang junior dev
 
+# Banknots exchanger
 
+REST API server to search for all options for exchanging the entered amount from the entered list of banknote denominations.
 
-## Задачи
+## API Specification
+https://rustam2202.github.io/exchanger/
 
-### Exchanges
+## Run Locally
 
-Написать REST сервис по расчету всех вариантов размена для указанной суммы денег. На вход принимается HTTP запрос в формате:
+Config parameters in ```cmd/config.yaml``` and start servers:
 
-```json
-{
-  "amount": 400,
-  "banknotes": [
-    5000,
-    2000,
-    1000,
-    500,
-    200,
-    100,
-    50
-  ]
-}
+```bash
+  make run
+```
+or
+```bash
+  make build
+  make exe
 ```
 
-где
-* **amount** – _сумма денег_
-* **banknotes** – _доступные номиналы банкнот_
+Try on `localhost:8080/docs/index.html`
 
-Формат ответа:
+## Running Tests
 
-```json
-{
-  "exchanges": [
-    [
-      200,
-      200
-    ],
-    [
-      200,
-      100,
-      100
-    ],
-    [
-      200,
-      100,
-      50,
-      50
-    ],
-    [
-      200,
-      50,
-      50,
-      50,
-      50
-    ],
-    [
-      100,
-      100,
-      100,
-      100
-    ],
-    [
-      100,
-      100,
-      100,
-      50,
-      50
-    ],
-    [
-      100,
-      100,
-      50,
-      50,
-      50,
-      50
-    ],
-    [
-      100,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50
-    ],
-    [
-      50,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50
-    ]
-  ]
-}
+```bash
+  make test
 ```
-
-## Требования к оформлению
-
-- конфигурация (хост, порт, уровень логирования) 
-- graceful shutdown
-- unit тесты алгоритма
-- оформлен в общедоступном git репозитории

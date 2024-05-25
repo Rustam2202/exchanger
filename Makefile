@@ -5,16 +5,8 @@ run:
 exe:
 	./bin/exchanger
 	
-docker-build:
-	docker build --tag exchanger .
-docker-run:
-	docker run -p 8080:8080 exchanger
-
 test:
-	go test ./... -cover -coverprofile=coverage.out
-test-cover:
-	make test
-	go tool cover -html=coverage.out
+	go test ./...
 
 swag:
 	swag fmt
