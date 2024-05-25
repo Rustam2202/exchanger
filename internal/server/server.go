@@ -46,7 +46,7 @@ func (s *Server) Start(ctx context.Context) {
 	router.POST("/exchange", handlers.ExchangePost)
 
 	// swagger API documentation
-	router.GET("/docs/index.html", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	s.HttpServer = &http.Server{
 		Addr:    fmt.Sprintf("%s:%d", s.cfg.Host, s.cfg.Port),

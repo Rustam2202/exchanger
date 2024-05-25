@@ -12,10 +12,15 @@ func FindCombinations(amount int, banknotes []int) ([][]int, error) {
 	if len(banknotes) == 0 {
 		return nil, errors.New("banknotes must not be empty")
 	}
-	if amount < slices.Min(banknotes) {
+	min_elem := slices.Min(banknotes)
+	if amount < min_elem {
 		return nil, errors.New("amount is less minimum banknote")
 	}
-	banknotes=slices.Compact(banknotes)
+	if min_elem == 0 {
+		return nil, errors.New("banknots must not be zero")
+	}
+
+	banknotes = slices.Compact(banknotes)
 
 	var result [][]int
 	var combination []int

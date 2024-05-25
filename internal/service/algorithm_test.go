@@ -33,6 +33,14 @@ func TestFindCombinations(t *testing.T) {
 			wantErr: true,
 		},
 		{
+			name: "One banknot equal zero",
+			args: args{
+				amount:    400,
+				banknotes: []int{100, 50, 0}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
 			name: "Amount less then min banknot",
 			args: args{
 				amount:    10,
